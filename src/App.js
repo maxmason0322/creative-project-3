@@ -25,6 +25,18 @@ class App extends Component {
     render() {
       return (
         <div className="app">
+          <div className="header">
+            <div className="header-item">
+              <a href="">Calculator</a>              
+            </div>
+            <div className="header-item">
+              <a href="">Mountain</a>              
+            </div>
+            <div className="header-item">
+              <a href="">Beach</a>              
+            </div>
+          </div>
+
           <div className="calc-wrapper">
             <Input input={this.state.input}></Input>
             <div className="row">
@@ -54,6 +66,10 @@ class App extends Component {
             <div className="row">
               <ClearButton handleClear={ () => this.setState({ input: "" })}>Clear</ClearButton>
             </div>
+          </div>
+
+          <div className="footer">
+            <a href="https://github.com/maxmason0322/creative-project-3">Github Repository</a>
           </div>
        </div>
       );

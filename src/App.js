@@ -3,77 +3,84 @@ import './App.css';
 import { Button } from './components/Button';
 import { Input } from './components/Input';
 import { ClearButton } from './components/ClearButton';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Layout from "./pages/Layout";
+import Calculator from "./pages/Calculator";
+import Mountain from "./pages/Mountain";
+import Beach from "./pages/Beach";
 import * as math from 'mathjs';
 
-class App extends Component {
-    constructor(props) {
-      super(props);
+// class App extends Component {
+//     constructor(props) {
+//       super(props);
       
-      this.state = {
-        input: ""
-      };
-    }
+//       this.state = {
+//         input: ""
+//       };
+//     }
     
-    addToInput = val => {
-      this.setState({ input: this.state.input + val });
-    }
+//     addToInput = val => {
+//       this.setState({ input: this.state.input + val });
+//     }
     
-    handleEqual = () => {
-      this.setState({ input: math.evaluate(this.state.input) });
-    }
+//     handleEqual = () => {
+//       this.setState({ input: math.evaluate(this.state.input) });
+//     }
     
-    render() {
-      return (
-        <div className="app">
-          <div className="header">
-            <div className="header-item">
-              <a href="">Calculator</a>              
-            </div>
-            <div className="header-item">
-              <a href="">Mountain</a>              
-            </div>
-            <div className="header-item">
-              <a href="">Beach</a>              
-            </div>
-          </div>
+//     render() {
+//       return (
+//         <div className="app">
+//           <div className="calc-wrapper">
+//             <Input input={this.state.input}></Input>
+//             <div className="row">
+//               <Button handleClick={this.addToInput}>7</Button>
+//               <Button handleClick={this.addToInput}>8</Button>
+//               <Button handleClick={this.addToInput}>9</Button>
+//               <Button handleClick={this.addToInput}>/</Button>
+//             </div>
+//             <div className="row">
+//               <Button handleClick={this.addToInput}>4</Button>
+//               <Button handleClick={this.addToInput}>5</Button>
+//               <Button handleClick={this.addToInput}>6</Button>
+//               <Button handleClick={this.addToInput}>*</Button>
+//             </div>
+//             <div className="row">
+//               <Button handleClick={this.addToInput}>1</Button>
+//               <Button handleClick={this.addToInput}>2</Button>
+//               <Button handleClick={this.addToInput}>3</Button>
+//               <Button handleClick={this.addToInput}>+</Button>
+//             </div>
+//             <div className="row">
+//               <Button handleClick={this.addToInput}>.</Button>
+//               <Button handleClick={this.addToInput}>0</Button>
+//               <Button handleClick={() => this.handleEqual()}>=</Button>
+//               <Button handleClick={this.addToInput}>-</Button>
+//             </div>
+//             <div className="row">
+//               <ClearButton handleClear={ () => this.setState({ input: "" })}>Clear</ClearButton>
+//             </div>
+//           </div>
 
-          <div className="calc-wrapper">
-            <Input input={this.state.input}></Input>
-            <div className="row">
-              <Button handleClick={this.addToInput}>7</Button>
-              <Button handleClick={this.addToInput}>8</Button>
-              <Button handleClick={this.addToInput}>9</Button>
-              <Button handleClick={this.addToInput}>/</Button>
-            </div>
-            <div className="row">
-              <Button handleClick={this.addToInput}>4</Button>
-              <Button handleClick={this.addToInput}>5</Button>
-              <Button handleClick={this.addToInput}>6</Button>
-              <Button handleClick={this.addToInput}>*</Button>
-            </div>
-            <div className="row">
-              <Button handleClick={this.addToInput}>1</Button>
-              <Button handleClick={this.addToInput}>2</Button>
-              <Button handleClick={this.addToInput}>3</Button>
-              <Button handleClick={this.addToInput}>+</Button>
-            </div>
-            <div className="row">
-              <Button handleClick={this.addToInput}>.</Button>
-              <Button handleClick={this.addToInput}>0</Button>
-              <Button handleClick={() => this.handleEqual()}>=</Button>
-              <Button handleClick={this.addToInput}>-</Button>
-            </div>
-            <div className="row">
-              <ClearButton handleClear={ () => this.setState({ input: "" })}>Clear</ClearButton>
-            </div>
-          </div>
+//           <div className="footer">
+//             <a href="https://github.com/maxmason0322/creative-project-3">Github Repository</a>
+//           </div>
+//        </div>
+//       );
+//     }
+// }
 
-          <div className="footer">
-            <a href="https://github.com/maxmason0322/creative-project-3">Github Repository</a>
-          </div>
-       </div>
-      );
-    }
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Layout/>}>
+          <Route index element={<Calculator/>}/>
+          <Route path="mountain" element={<Mountain />} />
+          <Route path="beach" element={<Beach />} />
+          <Route path="*" element={<Navigate to="/" />}  />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App;

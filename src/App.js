@@ -13,7 +13,7 @@ import * as math from 'mathjs';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='local260/creative-project-3/build'>
       <Routes>
         <Route path='/' element={<Layout/>}>
           <Route index element={<Calculator/>}/>
